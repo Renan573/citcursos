@@ -1,0 +1,137 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Sympla</title>
+</head>
+<body>
+    <h2>
+        Cursos CIT Barueri - Sympla
+    </h2>
+    <h3>
+        Sympla Courses
+    </h3>
+    <div th:each="curso : ${cursoslist}" style="background-color: yellowgreen;">
+        <div th:if="${not curso.isEnded}">
+            <p th:text="${curso.published}"></p>
+            <p th:text="${curso.id}"></p>
+            <p th:text="${curso.name}"></p>
+            <img th:src="@{${curso.image}}" style="height: 100px">
+            <a th:href="@{${curso.url}}" target="_blank">Saiba mais</a>
+            <p th:text="${curso.endDate}"></p>
+            <p th:text="${curso.host.name}">Host name: </p>
+            <p th:text="${curso.host.description}"></p>
+        </div>
+    </div>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/stylee.css">
+    <title>Cursos Sympla</title>
+</head>
+<body>
+    <hr class="linha-superior">
+    <header class="menu">
+
+        <div class="logo">
+        <img src="/imagens/logo.png" alt="Logo" class="logo">
+        </div>
+        <!--Menu-->
+        <div class="menuuu">
+            <div class="menu">
+            <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Projetos <br></a></li>
+            </ul>
+            </div>
+
+            <div class="menu">
+            <ul>
+            <li><a href="#">Eventos</a></li>
+            <li><a href="#">Cursos</a></li>
+            <li><a href="#">Cadastro</a></li>
+            <li><a href="#">Login</a></li>
+            </ul>
+            </div>
+        </div>
+
+
+    </header>
+    <main>
+        <div class="pageatual"><h1 class="tittlepa">Cursos</h1></div>
+        
+        <!--menu de filtrar-->
+        <div class="categoria">
+        <p class="filtrar">Filtrar por:<br><br></p>
+        <button id="openModal">Categoria</button>
+        <button id="openModal2">Público</button>
+        <button id="openModal">Parceria</button>
+        </div>
+        <hr class="linha-inferior">
+
+        <!--Catalogo de Cursos-->
+        <div class="cursos"> 
+
+            <div class="cursox" th:each="curso : ${cursoslist}" th:if="${not curso.isEnded && curso.published == 1}">
+                <a th:href="@{${curso.url}}" class="linkcurso" target="_blank"></a>
+                <img th:src="@{${curso.image}}" th:alt="${curso.name}" />
+                <div class="cursotexto">
+                    <h3 th:text="${curso.name}"></h3>
+                    <p th:text="${curso.host.name}"></p>
+                    <p th:text="${curso.categoryPrim.name}"></p>
+                    <p th:text="${curso.categorySec.name}"></p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+    <!-- Tela de Categoria-->
+        <div class="overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="btnfechar">
+            <input type="button" value="X" id="closeModal" class="fechar">
+            </div>
+            <h2>categoria</h2>
+            <input type="text" placeholder="Digite algo"><br>
+        </div>
+        </div>
+
+    <!-- Tela de publicos-->
+    <div class="overlay" id="modalOverlay2">
+        <div class="modal">
+            <div class="btnfechar">
+            <input type="button" value="X" id="closeModal2" class="fechar">
+            </div>
+            <h2>Público</h2>
+            <input type="text" placeholder="Digite algo"><br>
+        </div>
+        </div>
+
+    <!-- Tela de parceiros-->
+    <div class="overlay" id="modalOverlay3">
+        <div class="modal">
+            <div class="btnfechar">
+            <input type="button" value="X" id="closeModal3" class="fechar">
+            </div>
+            <h2>Parceria</h2>
+            <input type="text" placeholder="Digite algo"><br>
+        </div>
+        </div>
+
+        <script src="script.js"></script>
+
+</body>
+</html>
